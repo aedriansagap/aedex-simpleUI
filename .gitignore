@@ -8,7 +8,9 @@ node_modules
 
 # Production
 /dist
-/example/dist
+example/dist
+.vitepress/cache
+.vitepress/dist
 
 # Misc
 .DS_Store
