@@ -1,7 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'styling-simplified';
+import { ThemeProvider, createGlobalStyle } from 'styling-simplified';
 import { App } from './App';
+
+createGlobalStyle({
+  '*, *::before, *::after': {
+    boxSizing: 'border-box',
+    margin: 0,
+    padding: 0,
+  },
+  'html, body': {
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    bg: 'gray900',
+    color: 'white'
+  }
+});
 
 const customTheme = {
   colors: {

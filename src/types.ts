@@ -82,3 +82,4 @@ export interface StyleObject {
 }
 
 export type StyleDefinitions<T extends string> = Record<T, StyleObject>;
+export type GlobalStyleObject = Record<string, StyleObject>;

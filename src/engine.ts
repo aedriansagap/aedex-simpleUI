@@ -192,3 +192,16 @@ export function injectGlobalCSS(cssRules: string) {
   
   styleTag.textContent = cssRules;
 }
+
+export function injectBaseCSS(cssRules: string) {
+  if (typeof document === 'undefined') return;
+  
+  let styleTag = document.getElementById('styling-simplified-global');
+  if (!styleTag) {
+    styleTag = document.createElement('style');
+    styleTag.id = 'styling-simplified-global';
+    document.head.appendChild(styleTag);
+  }
+  
+  styleTag.appendChild(document.createTextNode(cssRules));
+}
