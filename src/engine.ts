@@ -145,7 +145,37 @@ export function injectCSS(className: string, cssRules: string, pseudo?: string, 
   styleTag.appendChild(document.createTextNode(css));
 }
 
+export function injectKeyframes(name: string, keyframeRules: string) {
+  if (typeof document === 'undefined') return;
+  
+  const cacheKey = `@keyframes ${name}`;
+  if (injectedCache.has(cacheKey)) return;
+  injectedCache.add(cacheKey);
+
+  let styleTag = document.getElementById('styling-simplified-styles');
+  if (!styleTag) {
+    styleTag = document.createElement('style');
+    styleTag.id = 'styling-simplified-styles';
+    document.head.appendChild(styleTag);
+  }
+
+  const css = `\n@keyframes ${name} {\n${keyframeRules}\n}`;
+  styleTag.appendChild(document.createTextNode(css));
+}
+
 export function generateClassName(styleObj: StyleObject): string {
   const jsonStr = JSON.stringify(styleObj);
   return `sx-${hash(jsonStr)}`;
+}
+
+export function createKeyframes(frames: Record<string, StyleObject>): string {
+  let rulesString = '';
+  for (const [percentage, styleObj] of Object.entries(frames)) {
+    const cssString = styleObjectToCss(styleObj);
+    rulesString += `  ${percentage} { ${cssString} }\n`;
+  }
+  
+  const name = `anim-${hash(rulesString)}`;
+  injectKeyframes(name, rulesString);
+  return name;
 }

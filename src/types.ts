@@ -60,6 +60,7 @@ export interface StyleObject {
   cursor?: string;
   transition?: string;
   transform?: string;
+  animation?: string;
   border?: string;
   borderWidth?: string | number;
   borderColor?: ColorToken;
