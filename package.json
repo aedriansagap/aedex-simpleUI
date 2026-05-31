@@ -1,5 +1,5 @@
 {
-  "name": "styling-simplified",
+  "name": "@aedriansagap/styling-simplified",
   "version": "1.0.0",
   "description": "A drop-in, zero-verbosity CSS-in-JS styling package for React.",
   "main": "./dist/index.js",
@@ -24,6 +24,13 @@
   },
   "peerDependencies": {
     "react": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aedriansagap/aedex-simpleUI.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@types/react": "^19.2.15",
