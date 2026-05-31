@@ -179,3 +179,16 @@ export function createKeyframes(frames: Record<string, StyleObject>): string {
   injectKeyframes(name, rulesString);
   return name;
 }
+
+export function injectGlobalCSS(cssRules: string) {
+  if (typeof document === 'undefined') return;
+  
+  let styleTag = document.getElementById('styling-simplified-theme');
+  if (!styleTag) {
+    styleTag = document.createElement('style');
+    styleTag.id = 'styling-simplified-theme';
+    document.head.appendChild(styleTag);
+  }
+  
+  styleTag.textContent = cssRules;
+}
