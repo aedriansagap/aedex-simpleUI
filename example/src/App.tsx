@@ -35,8 +35,7 @@ const styles = createStyle({
       transform: 'translateY(-4px)',
       borderColor: 'primary',
       shadow: '2xl'
-    },
-    transition: 'all 0.3s ease'
+    }
   },
   title: {
     text: 'h2',
