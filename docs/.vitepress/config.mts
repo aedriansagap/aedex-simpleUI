@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/aedex-simpleUI/',
   title: "aedex-simpleUI",
   description: "A blazing-fast, zero-verbosity CSS-in-JS styling engine.",
   themeConfig: {
