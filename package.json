@@ -1,0 +1,31 @@
+{
+  "name": "styling-simplified",
+  "version": "1.0.0",
+  "description": "A drop-in, zero-verbosity CSS-in-JS styling package for React.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.15",
+    "react": "^19.2.6",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
+  }
+}
