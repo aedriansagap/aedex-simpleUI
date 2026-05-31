@@ -68,6 +68,13 @@ export interface StyleObject {
   hover?: StyleObject;
   focus?: StyleObject;
   active?: StyleObject;
+
+  // Responsive Breakpoints
+  sm?: StyleObject;
+  md?: StyleObject;
+  lg?: StyleObject;
+  xl?: StyleObject;
+  '2xl'?: StyleObject;
   
   // Any other CSS property
   [key: string]: any;

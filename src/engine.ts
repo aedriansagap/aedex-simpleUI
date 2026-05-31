@@ -68,8 +68,8 @@ export function styleObjectToCss(styleObj: StyleObject): string {
   for (const [key, value] of Object.entries(styleObj)) {
     if (value === undefined || value === null) continue;
 
-    // Pseudo classes handled separately in createStyle
-    if (key === 'hover' || key === 'focus' || key === 'active') continue;
+    // Pseudo classes and breakpoints handled separately in createStyle
+    if (['hover', 'focus', 'active', 'sm', 'md', 'lg', 'xl', '2xl'].includes(key)) continue;
 
     if (key === 'layout') {
       Object.assign(cssRules, parseLayout(value as LayoutShorthand));
@@ -123,10 +123,10 @@ export function styleObjectToCss(styleObj: StyleObject): string {
     .join(' ');
 }
 
-export function injectCSS(className: string, cssRules: string, pseudo?: string) {
+export function injectCSS(className: string, cssRules: string, pseudo?: string, mediaQuery?: string) {
   if (typeof document === 'undefined') return; // For SSR
   
-  const cacheKey = `${className}${pseudo ? `:${pseudo}` : ''}`;
+  const cacheKey = `${className}${pseudo ? `:${pseudo}` : ''}${mediaQuery ? `@${mediaQuery}` : ''}`;
   if (injectedCache.has(cacheKey)) return;
   injectedCache.add(cacheKey);
 
@@ -138,7 +138,10 @@ export function injectCSS(className: string, cssRules: string, pseudo?: string) 
   }
 
   const selector = `.${className}${pseudo ? `:${pseudo}` : ''}`;
-  const css = `\n${selector} { ${cssRules} }`;
+  let css = `\n${selector} { ${cssRules} }`;
+  if (mediaQuery) {
+    css = `\n@media ${mediaQuery} {${css}\n}`;
+  }
   styleTag.appendChild(document.createTextNode(css));
 }
 

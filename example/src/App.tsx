@@ -14,9 +14,16 @@ const styles = createStyle({
     bg: 'gray800',
     rounded: '2xl',
     shadow: 'xl',
-    width: 400,
+    width: '90%', // Mobile width
+    maxWidth: 400,
     border: '1px solid',
     borderColor: 'gray800',
+    transition: 'all 0.3s ease',
+    md: {
+      layout: 'row',
+      maxWidth: 800,
+      p: '3xl'
+    },
     hover: {
       transform: 'translateY(-4px)',
       borderColor: 'primary',
@@ -27,7 +34,12 @@ const styles = createStyle({
   title: {
     text: 'h2',
     color: 'white',
-    mb: 'sm'
+    mb: 'sm',
+    md: {
+      text: 'h1',
+      mb: 'md',
+      color: 'primary'
+    }
   },
   description: {
     text: 'body',

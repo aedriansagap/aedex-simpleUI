@@ -46,5 +46,12 @@ export const tokens = {
     h3: { fontSize: '1.25rem', fontWeight: '600', lineHeight: '1.75rem' },
     body: { fontSize: '1rem', fontWeight: '400', lineHeight: '1.5rem' },
     small: { fontSize: '0.875rem', fontWeight: '400', lineHeight: '1.25rem' },
+  },
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px',
   }
 };
