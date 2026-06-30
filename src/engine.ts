@@ -4,6 +4,15 @@ import { tokens } from './tokens';
 // Cache for injected styles to avoid duplicate injections
 const injectedCache = new Set<string>();
 
+// SSR CSS Accumulator
+let ssrStyleSheet = '';
+
+export function extractStyles(): string {
+  const styles = ssrStyleSheet;
+  ssrStyleSheet = ''; // Reset after extraction
+  return styles;
+}
+
 // Simple hash function for generating unique class names
 const hash = (str: string) => {
   let h = 0;
@@ -124,34 +133,22 @@ export function styleObjectToCss(styleObj: StyleObject): string {
 }
 
 export function injectCSS(className: string, cssRules: string, pseudo?: string, mediaQuery?: string) {
-  if (typeof document === 'undefined') return; // For SSR
-  
   const pseudoSelector = pseudo ? (['before', 'after'].includes(pseudo) ? `::${pseudo}` : `:${pseudo}`) : '';
   const cacheKey = `${className}${pseudoSelector}${mediaQuery ? `@${mediaQuery}` : ''}`;
+  
   if (injectedCache.has(cacheKey)) return;
   injectedCache.add(cacheKey);
-
-  let styleTag = document.getElementById('styling-simplified-styles');
-  if (!styleTag) {
-    styleTag = document.createElement('style');
-    styleTag.id = 'styling-simplified-styles';
-    document.head.appendChild(styleTag);
-  }
 
   const selector = `.${className}${pseudoSelector}`;
   let css = `\n${selector} { ${cssRules} }`;
   if (mediaQuery) {
     css = `\n@media ${mediaQuery} {${css}\n}`;
   }
-  styleTag.appendChild(document.createTextNode(css));
-}
 
-export function injectKeyframes(name: string, keyframeRules: string) {
-  if (typeof document === 'undefined') return;
-  
-  const cacheKey = `@keyframes ${name}`;
-  if (injectedCache.has(cacheKey)) return;
-  injectedCache.add(cacheKey);
+  if (typeof document === 'undefined') {
+    ssrStyleSheet += css;
+    return; // For SSR
+  }
 
   let styleTag = document.getElementById('styling-simplified-styles');
   if (!styleTag) {
@@ -160,7 +157,28 @@ export function injectKeyframes(name: string, keyframeRules: string) {
     document.head.appendChild(styleTag);
   }
 
+  styleTag.appendChild(document.createTextNode(css));
+}
+
+export function injectKeyframes(name: string, keyframeRules: string) {
+  const cacheKey = `@keyframes ${name}`;
+  if (injectedCache.has(cacheKey)) return;
+  injectedCache.add(cacheKey);
+
   const css = `\n@keyframes ${name} {\n${keyframeRules}\n}`;
+
+  if (typeof document === 'undefined') {
+    ssrStyleSheet += css;
+    return;
+  }
+
+  let styleTag = document.getElementById('styling-simplified-styles');
+  if (!styleTag) {
+    styleTag = document.createElement('style');
+    styleTag.id = 'styling-simplified-styles';
+    document.head.appendChild(styleTag);
+  }
+
   styleTag.appendChild(document.createTextNode(css));
 }
 
@@ -182,7 +200,10 @@ export function createKeyframes(frames: Record<string, StyleObject>): string {
 }
 
 export function injectGlobalCSS(cssRules: string) {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') {
+    ssrStyleSheet += `\n${cssRules}`;
+    return;
+  }
   
   let styleTag = document.getElementById('styling-simplified-theme');
   if (!styleTag) {
@@ -195,7 +216,10 @@ export function injectGlobalCSS(cssRules: string) {
 }
 
 export function injectBaseCSS(cssRules: string) {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') {
+    ssrStyleSheet += `\n${cssRules}`;
+    return;
+  }
   
   let styleTag = document.getElementById('styling-simplified-global');
   if (!styleTag) {
