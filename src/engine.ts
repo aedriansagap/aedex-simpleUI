@@ -68,8 +68,8 @@ export function styleObjectToCss(styleObj: StyleObject): string {
   for (const [key, value] of Object.entries(styleObj)) {
     if (value === undefined || value === null) continue;
 
-    // Pseudo classes and breakpoints handled separately in createStyle
-    if (['hover', 'focus', 'active', 'before', 'after', 'sm', 'md', 'lg', 'xl', '2xl'].includes(key)) continue;
+    // Pseudo classes, breakpoints, and dark mode handled separately in createStyle
+    if (['hover', 'focus', 'active', 'before', 'after', 'sm', 'md', 'lg', 'xl', '2xl', 'dark'].includes(key)) continue;
 
     if (key === 'layout') {
       Object.assign(cssRules, parseLayout(value as LayoutShorthand));

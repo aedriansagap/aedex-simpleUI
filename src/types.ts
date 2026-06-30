@@ -80,6 +80,9 @@ export interface StyleObject {
   xl?: StyleObject;
   '2xl'?: StyleObject;
   
+  // Dark Mode
+  dark?: StyleObject;
+  
   // Any other CSS property
   [key: string]: any;
 }

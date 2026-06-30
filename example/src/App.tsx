@@ -12,18 +12,19 @@ const styles = createStyle({
     p: 'xl',
     width: '100vw',
     height: '100vh',
-    bg: 'gray900',
+    bg: 'gray100',
+    dark: { bg: 'gray900' }
   },
   card: {
     layout: 'col',
     p: 'xl',
-    bg: 'gray800',
+    bg: 'white',
     rounded: '2xl',
-    shadow: 'xl',
+    shadow: 'md',
     width: '90%', // Mobile width
     maxWidth: 400,
     border: '1px solid',
-    borderColor: 'gray800',
+    borderColor: 'gray200',
     transition: 'all 0.3s ease',
     md: {
       layout: 'row',
@@ -34,13 +35,22 @@ const styles = createStyle({
     hover: {
       transform: 'translateY(-4px)',
       borderColor: 'primary',
-      shadow: '2xl'
+      shadow: 'xl'
+    },
+    dark: {
+      bg: 'gray800',
+      borderColor: 'gray800',
+      shadow: 'xl',
+      hover: {
+        shadow: '2xl'
+      }
     }
   },
   title: {
     text: 'h2',
-    color: 'white',
+    color: 'gray900',
     mb: 'sm',
+    dark: { color: 'white' },
     md: {
       text: 'h1',
       mb: 'md',
@@ -64,8 +74,9 @@ const styles = createStyle({
   },
   description: {
     text: 'body',
-    color: 'gray300',
-    mb: 'lg'
+    color: 'gray600',
+    mb: 'lg',
+    dark: { color: 'gray300' }
   },
   button: {
     layout: 'center',

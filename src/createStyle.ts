@@ -40,6 +40,21 @@ export function createStyle<T extends string>(styles: StyleDefinitions<T>): Reco
       }
     }
 
+    // Process dark mode
+    if (typedStyleObj.dark) {
+      const darkCss = styleObjectToCss(typedStyleObj.dark);
+      const darkMediaQuery = '(prefers-color-scheme: dark)';
+      injectCSS(className, darkCss, undefined, darkMediaQuery);
+      
+      // Handle pseudo-classes inside dark mode
+      for (const pseudo of pseudoClasses) {
+        if (typedStyleObj.dark[pseudo]) {
+          const darkPseudoCss = styleObjectToCss(typedStyleObj.dark[pseudo]!);
+          injectCSS(className, darkPseudoCss, pseudo, darkMediaQuery);
+        }
+      }
+    }
+
     result[key] = { className };
   }
 
