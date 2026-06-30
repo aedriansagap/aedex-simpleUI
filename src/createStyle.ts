@@ -14,17 +14,12 @@ export function createStyle<T extends string>(styles: StyleDefinitions<T>): Reco
     injectCSS(className, baseCss);
 
     // Process pseudo-classes
-    if (typedStyleObj.hover) {
-      const hoverCss = styleObjectToCss(typedStyleObj.hover);
-      injectCSS(className, hoverCss, 'hover');
-    }
-    if (typedStyleObj.focus) {
-      const focusCss = styleObjectToCss(typedStyleObj.focus);
-      injectCSS(className, focusCss, 'focus');
-    }
-    if (typedStyleObj.active) {
-      const activeCss = styleObjectToCss(typedStyleObj.active);
-      injectCSS(className, activeCss, 'active');
+    const pseudoClasses = ['hover', 'focus', 'active', 'before', 'after'] as const;
+    for (const pseudo of pseudoClasses) {
+      if (typedStyleObj[pseudo]) {
+        const pseudoCss = styleObjectToCss(typedStyleObj[pseudo]!);
+        injectCSS(className, pseudoCss, pseudo);
+      }
     }
 
     // Process responsive breakpoints
@@ -36,17 +31,11 @@ export function createStyle<T extends string>(styles: StyleDefinitions<T>): Reco
         injectCSS(className, bpCss, undefined, mediaQuery);
         
         // Handle pseudo-classes inside breakpoints
-        if (typedStyleObj[bp]!.hover) {
-          const bpHoverCss = styleObjectToCss(typedStyleObj[bp]!.hover!);
-          injectCSS(className, bpHoverCss, 'hover', mediaQuery);
-        }
-        if (typedStyleObj[bp]!.focus) {
-          const bpFocusCss = styleObjectToCss(typedStyleObj[bp]!.focus!);
-          injectCSS(className, bpFocusCss, 'focus', mediaQuery);
-        }
-        if (typedStyleObj[bp]!.active) {
-          const bpActiveCss = styleObjectToCss(typedStyleObj[bp]!.active!);
-          injectCSS(className, bpActiveCss, 'active', mediaQuery);
+        for (const pseudo of pseudoClasses) {
+          if (typedStyleObj[bp]![pseudo]) {
+            const bpPseudoCss = styleObjectToCss(typedStyleObj[bp]![pseudo]!);
+            injectCSS(className, bpPseudoCss, pseudo, mediaQuery);
+          }
         }
       }
     }

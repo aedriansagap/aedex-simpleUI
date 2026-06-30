@@ -64,11 +64,14 @@ export interface StyleObject {
   border?: string;
   borderWidth?: string | number;
   borderColor?: ColorToken;
+  content?: string;
 
-  // Pseudo-classes
+  // Pseudo-classes and Pseudo-elements
   hover?: StyleObject;
   focus?: StyleObject;
   active?: StyleObject;
+  before?: StyleObject;
+  after?: StyleObject;
 
   // Responsive Breakpoints
   sm?: StyleObject;

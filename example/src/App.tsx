@@ -47,6 +47,21 @@ const styles = createStyle({
       color: 'primary'
     }
   },
+  badge: {
+    position: 'relative',
+    display: 'inline-block',
+    before: {
+      content: '""',
+      position: 'absolute',
+      top: -5,
+      right: -25,
+      width: 12,
+      height: 12,
+      bg: 'primary',
+      rounded: 'full',
+      shadow: 'xl'
+    }
+  },
   description: {
     text: 'body',
     color: 'gray300',
@@ -73,7 +88,9 @@ export function App() {
   return (
     <div {...styles.container}>
       <div {...styles.card}>
-        <h1 {...styles.title}>Styling Simplified!</h1>
+        <div {...styles.badge}>
+          <h1 {...styles.title}>Styling Simplified!</h1>
+        </div>
         <p {...styles.description}>
           Look ma, no CSS classes in my JSX! Just a clean object mapping to fully scoped, injected CSS classes.
         </p>
