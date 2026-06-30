@@ -1,4 +1,4 @@
-import { createStyle, createKeyframes } from 'styling-simplified';
+import { createStyle, createKeyframes } from '@aedriansagap/styling-simplified';
 
 const pulse = createKeyframes({
   '0%': { transform: 'scale(1)', shadow: 'xl' },
@@ -31,7 +31,7 @@ const styles = createStyle({
       maxWidth: 800,
       p: '3xl'
     },
-    animation: `${pulse} 3s ease-in-out infinite`,
+    animation: 'anim-1t3n0k4 3s ease-in-out infinite',
     hover: {
       transform: 'translateY(-4px)',
       borderColor: 'primary',

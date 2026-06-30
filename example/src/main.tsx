@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider, createGlobalStyle } from 'styling-simplified';
+import { ThemeProvider, createGlobalStyle } from '@aedriansagap/styling-simplified';
 import { App } from './App';
 
 createGlobalStyle({

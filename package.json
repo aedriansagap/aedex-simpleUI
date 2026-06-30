@@ -10,6 +10,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./plugin": {
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.mjs",
+      "require": "./dist/plugin.js"
     }
   },
   "files": [
@@ -33,6 +38,14 @@
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/generator": "^8.0.0",
+    "@babel/parser": "^8.0.0",
+    "@babel/traverse": "^8.0.0",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__parser": "^7.0.0",
+    "@types/babel__traverse": "^7.28.0",
     "@types/react": "^19.2.15",
     "react": "^19.2.6",
     "tsup": "^8.5.1",
