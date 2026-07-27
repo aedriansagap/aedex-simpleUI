@@ -13,7 +13,8 @@ export type LayoutShorthand =
   | 'row' 
   | 'row-center' 
   | 'row-between' 
-  | 'col-between';
+  | 'col-between'
+  | 'grid';
 
 export interface StyleObject {
   // Shorthands
@@ -23,6 +24,18 @@ export interface StyleObject {
   text?: TypographyToken;
   rounded?: RadiusToken;
   shadow?: ShadowToken;
+
+  // Flexbox & Grid Extensions
+  gap?: SpacingToken;
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  gridTemplateColumns?: string;
+
+  // Typography Extensions
+  fontWeight?: number | string;
+  textAlign?: 'left' | 'right' | 'center' | 'justify';
 
   // Spacing
   p?: SpacingToken;

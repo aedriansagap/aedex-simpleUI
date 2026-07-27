@@ -106,6 +106,48 @@ function Root() {
 }
 ```
 
+### 4. Global Styles & Resets
+
+Easily inject global CSS for resets or base styling without polluting your component files:
+
+```tsx
+import { createGlobalStyle } from 'aedex-simpleUI';
+
+createGlobalStyle({
+  'body, html': {
+    m: 0,
+    p: 0,
+    bg: 'gray900',
+    color: 'white',
+    text: 'body'
+  },
+  '*': {
+    boxSizing: 'border-box'
+  }
+});
+```
+
+### 5. Conditional Class Merging (`cx`)
+
+Use the built-in `cx` utility (similar to `clsx` or `classnames`) to conditionally merge generated classes or any other class names:
+
+```tsx
+import { cx, createStyle } from 'aedex-simpleUI';
+
+const styles = createStyle({
+  button: { p: 'md', rounded: 'md' },
+  active: { bg: 'primary', color: 'white' }
+});
+
+function Button({ isActive }) {
+  return (
+    <button className={cx(styles.button.className, isActive && styles.active.className)}>
+      Click Me
+    </button>
+  );
+}
+```
+
 ---
 
 ## 🤝 Call for Contributors!
@@ -114,8 +156,7 @@ This package was born out of a desire to make UI design in React **fun and reada
 
 **What we are looking to build next:**
 - Expanding the built-in design tokens and spacing systems.
-- Adding a `createGlobalStyle` API for CSS resets.
-- Creating a Vite/Webpack build-time extraction plugin (Zero-Runtime CSS!).
+- Expanding flexible grid layouts.
 - Building a comprehensive documentation site.
 
 If you are passionate about UI engineering, Design Systems, or AST/Build-tools, we would love your insights! 

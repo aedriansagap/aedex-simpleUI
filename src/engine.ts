@@ -10,7 +10,10 @@ let ssrStyleSheet = '';
 export function extractStyles(): string {
   const styles = ssrStyleSheet;
   ssrStyleSheet = ''; // Reset after extraction
-  return styles;
+  if (typeof document === 'undefined') {
+    injectedCache.clear();
+  }
+  return styles.trim();
 }
 
 // Simple hash function for generating unique class names
@@ -67,6 +70,9 @@ function parseLayout(layout: LayoutShorthand): Record<string, string> {
       styles.justifyContent = 'space-between';
       styles.alignItems = 'center';
       break;
+    case 'grid':
+      styles.display = 'grid';
+      break;
   }
   return styles;
 }
@@ -97,6 +103,8 @@ export function styleObjectToCss(styleObj: StyleObject): string {
       cssRules.borderRadius = resolveRadius(value);
     } else if (key === 'shadow') {
       cssRules.boxShadow = tokens.shadows[value as keyof typeof tokens.shadows] || value;
+    } else if (key === 'gap') {
+      cssRules.gap = resolveSpacing(value);
     } else if (key === 'p') {
       cssRules.padding = resolveSpacing(value);
     } else if (key === 'px') {
