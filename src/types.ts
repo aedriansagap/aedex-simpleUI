@@ -32,6 +32,16 @@ export interface StyleObject {
   justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
   gridTemplateColumns?: string;
+  gridTemplateRows?: string;
+  
+  // Flex & Grid Children
+  flexGrow?: number | string;
+  flexShrink?: number | string;
+  flexBasis?: string | number;
+  gridColumn?: string | number;
+  gridRow?: string | number;
+  justifySelf?: 'auto' | 'normal' | 'stretch' | 'center' | 'start' | 'end';
+  alignSelf?: 'auto' | 'normal' | 'stretch' | 'center' | 'start' | 'end';
 
   // Typography Extensions
   fontWeight?: number | string;
@@ -53,6 +63,11 @@ export interface StyleObject {
   ml?: SpacingToken;
   mr?: SpacingToken;
 
+  // Interaction
+  cursor?: 'auto' | 'default' | 'pointer' | 'wait' | 'text' | 'move' | 'not-allowed' | (string & {});
+  pointerEvents?: 'auto' | 'none' | (string & {});
+  userSelect?: 'auto' | 'none' | 'text' | 'all';
+
   // CSS standard properties
   width?: string | number;
   height?: string | number;
@@ -70,9 +85,9 @@ export interface StyleObject {
   zIndex?: number;
   opacity?: number;
   overflow?: 'visible' | 'hidden' | 'scroll' | 'auto';
-  cursor?: string;
   transition?: string;
   transform?: string;
+  transformOrigin?: string;
   animation?: string;
   border?: string;
   borderWidth?: string | number;

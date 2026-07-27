@@ -3,19 +3,82 @@ const createVar = (category: string, key: string, defaultValue: string) =>
 
 export const tokens = {
   colors: {
+    // Semantic Colors
     primary: createVar('colors', 'primary', '#3b82f6'),
     secondary: createVar('colors', 'secondary', '#8b5cf6'),
     success: createVar('colors', 'success', '#10b981'),
-    danger: createVar('colors', 'danger', '#ef4444'),
+    danger: createVar('colors', 'danger', '#e11d48'),
     warning: createVar('colors', 'warning', '#f59e0b'),
     info: createVar('colors', 'info', '#3b82f6'),
     white: createVar('colors', 'white', '#ffffff'),
     black: createVar('colors', 'black', '#000000'),
-    gray100: createVar('colors', 'gray100', '#f3f4f6'),
-    gray200: createVar('colors', 'gray200', '#e5e7eb'),
-    gray300: createVar('colors', 'gray300', '#d1d5db'),
-    gray800: createVar('colors', 'gray800', '#1f2937'),
-    gray900: createVar('colors', 'gray900', '#111827'),
+
+    // Slate
+    slate50: createVar('colors', 'slate50', '#f8fafc'),
+    slate100: createVar('colors', 'slate100', '#f1f5f9'),
+    slate200: createVar('colors', 'slate200', '#e2e8f0'),
+    slate300: createVar('colors', 'slate300', '#cbd5e1'),
+    slate400: createVar('colors', 'slate400', '#94a3b8'),
+    slate500: createVar('colors', 'slate500', '#64748b'),
+    slate600: createVar('colors', 'slate600', '#475569'),
+    slate700: createVar('colors', 'slate700', '#334155'),
+    slate800: createVar('colors', 'slate800', '#1e293b'),
+    slate900: createVar('colors', 'slate900', '#0f172a'),
+
+    // Blue
+    blue50: createVar('colors', 'blue50', '#eff6ff'),
+    blue100: createVar('colors', 'blue100', '#dbeafe'),
+    blue200: createVar('colors', 'blue200', '#bfdbfe'),
+    blue300: createVar('colors', 'blue300', '#93c5fd'),
+    blue400: createVar('colors', 'blue400', '#60a5fa'),
+    blue500: createVar('colors', 'blue500', '#3b82f6'),
+    blue600: createVar('colors', 'blue600', '#2563eb'),
+    blue700: createVar('colors', 'blue700', '#1d4ed8'),
+    blue800: createVar('colors', 'blue800', '#1e40af'),
+    blue900: createVar('colors', 'blue900', '#1e3a8a'),
+
+    // Emerald
+    emerald50: createVar('colors', 'emerald50', '#ecfdf5'),
+    emerald100: createVar('colors', 'emerald100', '#d1fae5'),
+    emerald200: createVar('colors', 'emerald200', '#a7f3d0'),
+    emerald300: createVar('colors', 'emerald300', '#6ee7b7'),
+    emerald400: createVar('colors', 'emerald400', '#34d399'),
+    emerald500: createVar('colors', 'emerald500', '#10b981'),
+    emerald600: createVar('colors', 'emerald600', '#059669'),
+    emerald700: createVar('colors', 'emerald700', '#047857'),
+    emerald800: createVar('colors', 'emerald800', '#065f46'),
+    emerald900: createVar('colors', 'emerald900', '#064e3b'),
+
+    // Rose
+    rose50: createVar('colors', 'rose50', '#fff1f2'),
+    rose100: createVar('colors', 'rose100', '#ffe4e6'),
+    rose200: createVar('colors', 'rose200', '#fecdd3'),
+    rose300: createVar('colors', 'rose300', '#fda4af'),
+    rose400: createVar('colors', 'rose400', '#fb7185'),
+    rose500: createVar('colors', 'rose500', '#f43f5e'),
+    rose600: createVar('colors', 'rose600', '#e11d48'),
+    rose700: createVar('colors', 'rose700', '#be123c'),
+    rose800: createVar('colors', 'rose800', '#9f1239'),
+    rose900: createVar('colors', 'rose900', '#881337'),
+
+    // Amber
+    amber50: createVar('colors', 'amber50', '#fffbeb'),
+    amber100: createVar('colors', 'amber100', '#fef3c7'),
+    amber200: createVar('colors', 'amber200', '#fde68a'),
+    amber300: createVar('colors', 'amber300', '#fcd34d'),
+    amber400: createVar('colors', 'amber400', '#fbbf24'),
+    amber500: createVar('colors', 'amber500', '#f59e0b'),
+    amber600: createVar('colors', 'amber600', '#d97706'),
+    amber700: createVar('colors', 'amber700', '#b45309'),
+    amber800: createVar('colors', 'amber800', '#92400e'),
+    amber900: createVar('colors', 'amber900', '#78350f'),
+
+    // Legacy Grays mapped to Slate for backward compatibility
+    gray100: createVar('colors', 'gray100', '#f1f5f9'),
+    gray200: createVar('colors', 'gray200', '#e2e8f0'),
+    gray300: createVar('colors', 'gray300', '#cbd5e1'),
+    gray800: createVar('colors', 'gray800', '#1e293b'),
+    gray900: createVar('colors', 'gray900', '#0f172a'),
   },
   spacing: {
     0: createVar('spacing', '0', '0px'),
